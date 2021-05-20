@@ -1,0 +1,356 @@
+@prefix : <http://www.semanticweb.org/a/ontologies/2021/3/oblig06> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/a/ontologies/2021/3/> .
+
+<http://www.semanticweb.org/a/ontologies/2021/3/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Trains
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Trains> rdf:type owl:ObjectProperty ;
+                                                                owl:inverseOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasTrainer> .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#ancestor
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#ancestor> rdf:type owl:ObjectProperty ,
+                                                                           owl:TransitiveProperty .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#dam
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#dam> rdf:type owl:ObjectProperty ;
+                                                             rdfs:subPropertyOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#ancestor> ;
+                                                             rdfs:domain <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> ;
+                                                             rdfs:range <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Female> ,
+                                                                        <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hadInterestIn
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hadInterestIn> rdf:type owl:ObjectProperty ;
+                                                                       owl:propertyChainAxiom ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Trains>
+                                                                                                <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted>
+                                                                                              ) .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasTrainer
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasTrainer> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:domain <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> ;
+                                                                    rdfs:range <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Person> .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasWon
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasWon> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted> .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#sire
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#sire> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#ancestor> ;
+                                                              rdfs:domain <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> ;
+                                                              rdfs:range <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> ,
+                                                                         <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#age
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#age> rdf:type owl:DatatypeProperty ,
+                                                                      owl:FunctionalProperty ;
+                                                             rdfs:domain [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted> ;
+                                                                           owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty owl:topObjectProperty ;
+                                                                           owl:someValuesFrom owl:Thing
+                                                                         ] ;
+                                                             rdfs:range xsd:int .
+
+[ rdf:type owl:AllDisjointProperties ;
+   owl:members ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#age>
+               )
+ ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> rdf:type owl:DatatypeProperty ,
+                                                                       owl:FunctionalProperty ;
+                                                              rdfs:domain [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty owl:topObjectProperty ;
+                                                                            owl:someValuesFrom owl:Thing
+                                                                          ] ;
+                                                              rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Animal
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Animal> rdf:type owl:Class ;
+                                                                rdfs:subClassOf [ rdf:type owl:Class ;
+                                                                                  owl:unionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Female>
+                                                                                                <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male>
+                                                                                              )
+                                                                                ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#ColdbloodedHorse
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#ColdbloodedHorse> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty owl:topObjectProperty ;
+                                                                                            owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                                          ] ;
+                                                                          owl:disjointWith <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#WarmbloodedHorse> .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Female
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Female> rdf:type owl:Class ;
+                                                                owl:disjointWith <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male> .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Filly
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Filly> rdf:type owl:Class ;
+                                                               owl:equivalentClass [ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Female>
+                                                                                                          <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#age> ;
+                                                                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                 owl:onDatatype xsd:int ;
+                                                                                                                                 owl:withRestrictions ( [ xsd:maxExclusive "4"^^xsd:int
+                                                                                                                                                        ]
+                                                                                                                                                      )
+                                                                                                                               ]
+                                                                                                          ]
+                                                                                                        ) ;
+                                                                                     rdf:type owl:Class
+                                                                                   ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> rdf:type owl:Class ;
+                                                               owl:equivalentClass <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#RaceHorse> ;
+                                                               rdfs:subClassOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Animal> ,
+                                                                               <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> ,
+                                                                               [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#dam> ;
+                                                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                        owl:onClass [ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Female>
+                                                                                                                                           <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                                                                                         ) ;
+                                                                                                                      rdf:type owl:Class
+                                                                                                                    ]
+                                                                                                      ]
+                                                                                                      [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#sire> ;
+                                                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                        owl:onClass [ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                                                                                           <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male>
+                                                                                                                                         ) ;
+                                                                                                                      rdf:type owl:Class
+                                                                                                                    ]
+                                                                                                      ]
+                                                                                                    ) ;
+                                                                                 rdf:type owl:Class
+                                                                               ] ,
+                                                                               [ rdf:type owl:Class ;
+                                                                                 owl:complementOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace>
+                                                                               ] ,
+                                                                               [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Trains> ;
+                                                                                 owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                               ] ;
+                                                               owl:disjointWith <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Person> ;
+                                                               rdfs:comment "Every Horse is an animal" .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteHorse
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteHorse> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf [ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#RaceHorse>
+                                                                                                           [ rdf:type owl:Restriction ;
+                                                                                                             owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted> ;
+                                                                                                             owl:allValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteRace>
+                                                                                                           ]
+                                                                                                         ) ;
+                                                                                      rdf:type owl:Class
+                                                                                    ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteRace
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteRace> rdf:type owl:Class ;
+                                                                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty owl:topObjectProperty ;
+                                                                                         owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#RaceHorse>
+                                                                                       ] ;
+                                                                   rdfs:subClassOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace> ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted> ;
+                                                                                     owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#RaceHorse>
+                                                                                   ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Person
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Person> rdf:type owl:Class ;
+                                                                rdfs:subClassOf [ rdf:type owl:Class ;
+                                                                                  owl:complementOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Class ;
+                                                                                  owl:complementOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> ;
+                                                                                  owl:someValuesFrom owl:rational
+                                                                                ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#RaceHorse
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#RaceHorse> rdf:type owl:Class ;
+                                                                   owl:equivalentClass [ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted> ;
+                                                                                                                owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace>
+                                                                                                              ]
+                                                                                                            ) ;
+                                                                                         rdf:type owl:Class
+                                                                                       ] ;
+                                                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasTrainer> ;
+                                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                     owl:onClass <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Person>
+                                                                                   ] ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> ;
+                                                                                     owl:someValuesFrom xsd:string
+                                                                                   ] ;
+                                                                   owl:hasKey ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name>
+                                                                              ) .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Stallion
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Stallion> rdf:type owl:Class ;
+                                                                  owl:equivalentClass [ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse>
+                                                                                                             <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male>
+                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#age> ;
+                                                                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                    owl:onDatatype xsd:int ;
+                                                                                                                                    owl:withRestrictions ( [ xsd:minInclusive "4"^^xsd:int
+                                                                                                                                                           ]
+                                                                                                                                                         )
+                                                                                                                                  ]
+                                                                                                             ]
+                                                                                                           ) ;
+                                                                                        rdf:type owl:Class
+                                                                                      ] ;
+                                                                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty owl:topObjectProperty ;
+                                                                                    owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Male>
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#age> ;
+                                                                                    owl:minCardinality "4"^^xsd:nonNegativeInteger
+                                                                                  ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#SuperHorse
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#SuperHorse> rdf:type owl:Class ;
+                                                                    owl:equivalentClass [ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#RaceHorse>
+                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasWon> ;
+                                                                                                                 owl:minQualifiedCardinality "100"^^xsd:nonNegativeInteger ;
+                                                                                                                 owl:onClass <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#HorseRace>
+                                                                                                               ]
+                                                                                                             ) ;
+                                                                                          rdf:type owl:Class
+                                                                                        ] .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#WarmbloodedHorse
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#WarmbloodedHorse> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Horse> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Doctor_Rodney
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Doctor_Rodney> rdf:type owl:NamedIndividual ;
+                                                                       <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> "Doctor Rodney"^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Elitloppet1986
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Elitloppet1986> rdf:type owl:NamedIndividual ,
+                                                                                 [ rdf:type owl:Class ;
+                                                                                   owl:complementOf <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteHorse>
+                                                                                 ] ;
+                                                                        <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> "Elitloppet1986"^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Kjell_Håkonsen
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Kjell_Håkonsen> rdf:type owl:NamedIndividual ;
+                                                                        <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> "Kjell Håkonsen"^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Rex_Rodney
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Rex_Rodney> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#SuperHorse> ;
+                                                                    <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasTrainer> <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Kjell_Håkonsen> ;
+                                                                    <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasWon> <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Elitloppet1986> ;
+                                                                    <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#sire> <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Doctor_Rodney> ;
+                                                                    <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> "Rex Rodney"^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Steady,_Ready,_Go
+<http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Steady,_Ready,_Go> rdf:type owl:NamedIndividual ,
+                                                                                    <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#Filly> ,
+                                                                                    <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteHorse> ;
+                                                                           <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#name> "Steady, Ready, Go"^^rdfs:Literal .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ owl:intersectionOf ( <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#WarmbloodedHorse>
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#hasCompeted> ;
+                         owl:someValuesFrom <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#MonteRace>
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty <http://www.semanticweb.org/a/ontologies/2021/3/oblig06#age> ;
+                    owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                         owl:onDatatype xsd:int ;
+                                         owl:withRestrictions ( [ xsd:minInclusive "4"^^xsd:int
+                                                                ]
+                                                                [ xsd:maxInclusive "12"^^xsd:int
+                                                                ]
+                                                              )
+                                       ]
+                  ]
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
